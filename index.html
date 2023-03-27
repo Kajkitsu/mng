@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Metody i narzędzia generowania kodu wykonywalnego</title>
+
+	<meta name="description" content="MNGKW LAB">
+	<meta name="author" content="Norbert Waszkowiak">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+
+	<div class="reveal">
+
+		<!-- Any section element inside of this container is displayed as a slide -->
+		<div class="slides">
+			<section data-background-gradient="linear-gradient(45deg, #333, #1f7520)">
+				<h2>Metody i narzędzia generowania kodu wykonywalnego</h2>
+				<br slyle="height: 600px;" />
+				<p style="text-align: left;">ppor. mgr inż. Norbert Waszkowiak</p>
+				<div class="fragment" style="text-align: left;">
+					<small>nr tel.: 261 839 060</small>
+					<br />
+					<small>e-mail: norbert.waszkowiak@wat.edu.pl</small>
+					<br />
+					<small>pomieszczenie: bud. 100 pok. 254B</small>
+					<br />
+					<small>konsultacje: poniedziałek 15:15 - 16:15 (po wcześniejszym umówieniu)</small>
+					<small>(zapraszam również do kontaktu przez MS Teams)</small>
+				</div>
+			</section>
+			<section data-background-gradient="linear-gradient(to bottom, #000, #9c0101)">
+				<h2>Zasady oceniania</h2>
+				<small>
+					<ol>
+						<li>Każde przedstawione zadanie podlega ocenie 2-5;</li>
+						<li>W przypadku stwierdzenia niesamodzielności w wykonaniu pracy zostanie ona wliczona do
+							średniej
+							jako 0;</li>
+						<li>Ostateczna ocena z laboratoriów będzie wynikała ze średniej z wszystkich zadań
+							laboratoryjnych;
+						</li>
+						<li>Warunkiem zaliczenia jest oddanie wszystkich zadań laboratoryjnych w ustalonym terminie dla
+							każdego zadania.</li>
+						<li>
+							Ocenie podlegać będą:
+							<br />
+							<ol>
+								<li>Poprawność wykonania;</li>
+								<li>Zakres funkcjonalności rozwiązania;</li>
+								<li>Samodzielność;</li>
+								<li>Zastosowanie dobrych praktyk programistycznych;</li>
+								<li>Wykorzystanie systemu kontroli wersjii.</li>
+							</ol>
+						</li>
+					</ol>
+				</small>
+			</section>
+			<section data-background-gradient="linear-gradient(45deg, #c03090, #10a080)">
+				<section>
+					<h2>Wyrażenia regularne</h2>
+				</section>
+				<section>
+					<h3>A komu to potrzebne? A dlaczego?</h3>
+					<small style="text-align: left;">Wyrażenia regularne - (ang. regular expression, w skrócie regex lub
+						regexp) - wzorzec
+						opisujący łańcuch symboli. Teoria wyrażeń regularnych jest związana z teorią języków
+						regularnych.</small>
+					<small style="text-align: left;"> Wyrażenia regularne mogą określać zbiór pasujących łańcuchów, jak
+						również wyszczególniać istotne części łańcucha.</small>
+				</section>
+				<section>
+					<small style="text-align: left;">W praktyce znalazły bardzo szerokie zastosowanie, pozwalają bowiem
+						w
+						łatwy sposób opisywać wzorce tekstu, natomiast istniejące algorytmy w efektywny sposób
+						określają, czy podany ciąg znaków pasuje do wzorca lub wyszukują w tekście wystąpienia wzorca.
+					</small>
+					<small style="text-align: left;">Wyrażenia regularne w praktycznych zastosowaniach są zapisywane za
+						pomocą bogatszej i łatwiejszej w użyciu składni niż ta stosowana w rozważaniach teoretycznych.
+					</small>
+				</section>
+				<section>
+					<h3>Pokaz z objaśnieniem</h3>
+					<p><a href="https://regex101.com/r/1B5osM/1">Przykład z grupami dziekańskimi</a></p>
+					<img src="assets/ss-regex.png" style="height: 500px;" />
+					<p>Dane:</p>
+					<small style="height: 1px; font-size: 6px;">WCY18IX1S3 ; WCY19IG1S1 ; WCY19IJ1N1 ;
+						WCY19IJ1S1 ; WCY19IJ2S1 ; WCY19IJ3S1 ; WCY19IJ4S1 ; WCY19IL1S0 ; WCY19IT1S0 ; WCY19IW1S0 ;
+						WCY19KA1S0 ; WCY19KB1S0 ; WCY19KC1S0 ; WCY19KC1S1 ; WCY19KS1S0 ; WCY19KS1S1 ; WCY20IG1S1 ;
+						WCY20IJ1N1 ; WCY20IJ1S1 ; WCY20IJ2S1 ; WCY20IJ3S1 ; WCY20IM1S1 ; WCY20IX1S0 ; WCY20IX2S0 ;
+						WCY20IX3S0 ; WCY20IX4S0 ; WCY20IX5S0 ; WCY20IX6S0 ; WCY20IY1S1 ; WCY20IY2S1 ; WCY20IY3S1 ;
+						WCY20IY4S1 ; WCY20IY5S1 ; WCY20KA1S1 ; WCY20KC1S1 ; WCY20KX1S0 ; WCY20KX2S0 ; WCY20KX3S0 ;
+						WCY20KX4S0 ; WCY20KY1S1 ; WCY20KY2S1 ; WCY20KY3S1 ; WCY21E71N5 ; WCY21I*BDa ; WCY21I*BDb ;
+						WCY21I*SO ; WCY21I*Tpi ; WCY21IB1S4 ; WCY21IB2S4 ; WCY21IE1S4 ; WCY21IH1S4 ; WCY21IM1S4 ;
+						WCY21IV1S4 ; WCY21IX1N1 ; WCY21IX1S0 ; WCY21IX2N1 ; WCY21IX2S0 ; WCY21IX3S0 ; WCY21IX4S0 ;
+						WCY21IX5S0 ; WCY21IX6S0 ; WCY21IY1S1 ; WCY21IY2S1 ; WCY21IY3S1 ; WCY21IY4S1 ; WCY21K*SAa ;
+						WCY21K*SAb ; WCY21KB1S4 ; WCY21KB2S4 ; WCY21KB3S4 ; WCY21KC1S4 ; WCY21KS1S4 ; WCY21KS2S4 ;
+						WCY21KT1S4 ; WCY21KX1S0 ; WCY21KX2S0 ; WCY21KX3S0 ; WCY21KX4S0 ; WCY21KX5S0 ; WCY21KX6S0 ;
+						WCY21KY1S1 ; WCY21KY2S1 ; WCY22IA2aS6 ; WCY22IA2bS6 ; WCY22IB1N2 ; WCY22IB2N2 ; WCY22IB3aS6
+						; WCY22IB3bS6 ; WCY22IBOS6 ; WCY22IE3aS6 ; WCY22IE3bS6 ; WCY22IX1N1 ; WCY22IX1N5 ;
+						WCY22IX1S0 ; WCY22IX2N1 ; WCY22IX2N5 ; WCY22IX2S0 ; WCY22IX3N1 ; WCY22IX3S0 ; WCY22IX4S0 ;
+						WCY22IX5S0 ; WCY22IY1S1 ; WCY22IY2S1 ; WCY22IY3S1 ; WCY22IY4S1 ; WCY22IY5S1 ; WCY22IZ3aS6 ;
+						WCY22IZ3bS6 ; WCY22KX1S0 ; WCY22KX2S0 ; WCY22KX3S0 ; WCY22KX4S0 ; WCY22KX5S0 ; WCY22KX6S0 ;
+						WCY22KX7S0 ; WCY22KY1S1 ; WCY22KY2S1 ; WCY22SO3S6 ; WCY22X*BBDa ; WCY22X*BDa ; WCY22X*Fiz2a
+						; WCY22X*Fiz2b ; WCY22X*M1a ; WCY22X*M2a ; WCY22X*M2b ; WCY22X*Md1a ; WCY22X*TIiKa ;
+						WME19BC1S1 ; WME19BM1S1 ; WME19BO1S1 ; WME20BE1S1 ; WME20BM1S1 ; WME20BO1S1 ; WME21BM1S4 ;
+						WME21BX1S1 ; WME21BX2S1 ; WME21BX3S1 ; WME21BX4S1 ; WME22B1N5 ; WME22BX1S1 ; WME22BX2S1 ;
+						WME22BX3S1 ; WME22BX4S1</small>
+				</section>
+				<section>
+					<h3>Pokaz z objaśnieniem</h3>
+					<p><a href="https://regex101.com/r/HgaRAs/1">Przykład z cytatem</a></p>
+					<img src="assets/ss-regex-2.png" style="height: 500px;" />
+				</section>
+				<section>
+					<h3>Wprowadzenie w sytuacje taktyczna</h3>
+					<small style="text-align: left;">Firma "S" utrzymująca system do zarządzania danymi badawczymi,
+						publikacjami i pracownikami naukowymi. Pozyskała nowego klienta, który dotychczas korzystał z
+						innego rozwiązania i zaszła potrzeba migracji danych z poprzedniego systemu. W systemie firmy
+						"S" w
+						encji opisującej publikacje istnieją osobne pola oznaczające nr artykułu, nr wydania, strony,
+						wydawca itp. itd. W starym systemie wszystkie te pola znajdują się w dwóch polach tekstowych,
+						aby wyeksportować dane z tych pól, należy skorzystać z wyrażeń regularnych.</small>
+				</section>
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<h3>Dane do zadań</h3>
+					<small style="text-align: left; margin: 20px">
+						<br />
+						<a href="https://github.com/Kajkitsu/MNGKW-presentation/blob/master/details.csv">Plik
+							csv</a> podzielony jest na następujące kolumny:
+						<br />
+						<ol style="margin: 10px;">
+							<span class="fragment highlight-blue">
+								<li>publisher - dane wej.</li>
+								<li>details - dane wej.</li>
+							</span>
+							<span class="fragment highlight-green">
+								<li>no - dane wyj.</li>
+								<li>vol - dane wyj.</li>
+								<li>article no - dane wyj.</li>
+								<li>pages in range - dane wyj.</li>
+								<li>pages as size - dane wyj.</li>
+								<li>publisher name - dane wyj.</li>
+								<li>publisher location - dane wyj.</li>
+								<li>publisher year - dane wyj.</li>
+							</span>
+						</ol>
+						<br>
+						<br>
+						Separator: "<span class="fragment highlight-red">,</span>"
+					</small>
+				</section>
+				<section data-background="#202020">
+					<h3>Zadanie 1 cz. 1</h3>
+					<div style="text-align: left">
+						<small>
+							Opracować wyrażenia regularne służące do identyfikacji poszczególnych danych szczegółowych
+							publikacji na podstawie wyników z przedstawionego pliku CSV. Do końca zajęć
+							przesłać za pomocą <a href="https://forms.office.com/r/hpspPt8nhH">formularza</a>
+							opracowane wyrażenia. Formularz dopuszcza dowolną liczbę wypełnień. Czas przesłania i liczba
+							odpowiedzi posłużą do oceny samodzielności wykonania.
+						</small>
+						<small class="fragment fade-right" style="margin-top: 10px;">
+							<b><span class="fragment highlight-red">Termin oddania pracy: do końca trwania
+									laboratoriów</span></b>
+						</small>
+					</div>
+				</section>
+				<section>
+					<h3>Testy jednostkowe (ang. unit test) </h3>
+					<div style="text-align: left">
+						<small>
+							metoda testowania tworzonego oprogramowania poprzez
+							wykonywanie testów weryfikujących poprawność działania pojedynczych elementów (jednostek)
+							programu - np. metod lub obiektów w programowaniu obiektowym lub procedur w programowaniu
+							proceduralnym. Testowany fragment programu poddawany jest testowi, który wykonuje go i
+							porównuje
+							wynik (np. zwrócone wartości, stan obiektu, zgłoszone wyjątki) z oczekiwanymi wynikami - tak
+							pozytywnymi, jak i negatywnymi (niepowodzenie działania kodu w określonych sytuacjach
+							również
+							może podlegać testowaniu).</small>
+						<small>
+							Zaletą testów jednostkowych jest możliwość wykonywania na bieżąco w pełni
+							zautomatyzowanych
+							testów na modyfikowanych elementach programu, co umożliwia często wychwycenie błędu
+							natychmiast
+							po jego pojawieniu się i szybką jego lokalizację zanim dojdzie do wprowadzenia błędnego
+							fragmentu do programu.</small>
+					</div>
+				</section>
+				<section>
+					<h3>Przykładowy test jednostkowy w Python.unittest</h3>
+					<small>
+						Dokumentacja <a href="https://docs.python.org/3/library/unittest.html#">unittest</a> i fragment
+						dotyczący <a
+							href="https://docs.python.org/3/library/unittest.html#distinguishing-test-iterations-using-subtests">"subtest"-ów</a>
+
+					</small>
+					<pre style="font-size: 14px" data-id="code-animation">
+						<code class="hljs python" data-trim data-line-numbers="7-8|10-20|12-20"><script type="text/template">
+							import csv
+							import unittest
+							
+							from extractor import Extractor
+							
+							class MyTestCase(unittest.TestCase):
+								def setUp(self) -> None:
+									self.csvreader = csv.reader(open("details.csv", 'r', encoding="utf-8"))
+							
+								def test_get_pages_as_range(self):
+									for row in self.csvreader:
+										with self.subTest():
+											#given
+											publisher_value = row[0]
+											details_value = row[1]
+											pages_in_range_value = row[5]
+											#then
+											extractor = Extractor(publisher_value, details_value)
+											#expect
+											self.assertEqual(extractor.get_pages_in_range(), pages_in_range_value)
+							
+							if __name__ == '__main__':
+								unittest.main()
+							
+						</script>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h3>Przykładowy test jednostkowy w JUnit</h3>
+					<small>Dokumentacja <a href="https://junit.org/junit5/docs/current/user-guide/">JUnit5</a></small>
+					<pre style="font-size: 14px;" data-id="code-animation"><code data-trim data-line-numbers="23-33"><script type="text/template">
+    public static final int DETAIL_INDEX = 1;
+    public static final int PUBLISHER_INDEX = 0;
+    public static final int NO_INDEX = 2;
+    public static final int VOL_INDEX = 3;
+    public static final int ARTICLE_NO_INDEX = 4;
+    public static final int PAGES_IN_RANGE_INDEX = 5;
+    public static final int PAGES_AS_SIZE_INDEX = 6;
+    public static final int PUBLISHER_NAME_INDEX = 7;
+    public static final int PUBLISHER_LOCATION_INDEX = 8;
+    public static final int PUBLISHER_YEAR_INDEX = 9;
+    List<List<String>> entries;
+
+    @BeforeEach
+    void setUp() {
+        entries = load();
+    }
+
+    private List<List<String>> load() {
+		//....
+    }
+
+
+    @Test
+    void testNo() {
+        Assertions.assertAll(
+                entries.stream()
+                        .map(it -> extracted(new Extractor(it.get(DETAIL_INDEX), it.get(PUBLISHER_INDEX)), it))
+        );
+    }
+
+    private Executable extracted(Extractor extractor, List<String> entry) {
+        return () -> Assertions.assertEquals(extractor.getNo().orElse(""), entry.get(NO_INDEX));
+    }
+					</script></code></pre>
+				</section>
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<h3>Zadanie 1 cz. 2</h3>
+					<small style="text-align: left; margin-top: 10px">Z zastosowaniem <a
+							href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882">dobrych
+							praktyk programistycznych</a> (lub <a
+							href="https://letmegooglethat.com/?q=good+programming+practices">to</a>) zaimplementuj
+						program korzystający z wyrażeń regularnych, który dostarczy interfejs umożliwiający rozdzielenie
+						danych szczegółowych z dwóch dostarczonych pól tekstowych. Potwierdzeniem działania programu
+						mają być <b>testy jednostkowe</b> przygotowane w oparciu o przedstawione dane.
+					</small>
+					<small class="fragment fade-right" style="text-align: left; margin-top: 10px;">
+						Program należy wykonać w jednym z następujących języków: Java, Kotlin, Scala, Python, C#,
+						C++
+					</small>
+					<small class="fragment fade-right" style="text-align: left; margin-top: 10px;">
+						Do końca trwania laboratoriów przesłać za pomocą <a
+							href="https://forms.office.com/r/cexRADC2at">formularza</a>
+						link do utworzonego <b>publicznego</b> repozytorium na github.com
+					</small>
+					<small class="fragment fade-right" style="margin-top: 10px;">
+						<b><span class="fragment highlight-red">Termin oddania pracy: 13.11.2022r. godz: 5:00</span></b>
+					</small>
+				</section>
+
+			</section>
+			<section data-background-gradient="linear-gradient(20deg, #650000, #29448b)">
+				<section>
+					<h2>ANTLR4</h2>
+				</section>
+				<section>
+					<h3>Co to jest i do czego służy?</h3>
+					<small>
+						ANTLR (ang. ANother Tool for Language Recognition) to narzędzie służące do tworzenia
+						kompilatorów oraz translatorów z opisu gramatyki zawierającego akcje w języku Java, C++, C# lub
+						Python.
+					</small>
+					<small>
+						Domyślnie ANTLR generuje lekser i parser w Javie, a plik z gramatyką ma rozszerzenie <i>.g4</i>.
+						Dostępne są również implementacje narzędzia w <a
+							href="https://www.antlr.org/download.html">innych
+							językach</a>.
+					</small>
+					<small>Drzewo syntaktyczne dla dowolnej gramatyki można wygenerować również za pomocą narzędzia
+						online <a href="http://lab.antlr.org/">ANTLR LAB</a>.</small>
+					<div style="margin-top: 20px;"></div>
+					<small>
+						<a ref="https://github.com/antlr/antlr4/tree/master/doc">Dokumentacja ANTLR4</a>
+					</small>
+				</section>
+				<section>
+					<h3>Wzorowy pokaz</h3>
+					<small><a href="https://github.com/antlr/grammars-v4">Gramatyki ANTLR4</a></small>
+					<pre style="font-size: 14px;" data-id="code-animation"><code data-trim>
+						wget https://raw.githubusercontent.com/antlr/grammars-v4/master/cpp/CPP14Lexer.g4
+						wget https://raw.githubusercontent.com/antlr/grammars-v4/master/cpp/CPP14Parser.g4
+						wget https://www.antlr.org/download/antlr-4.11.1-complete.jar
+						nano example.cpp
+						java -jar ./antlr-4.11.1-complete.jar CPP14Lexer.g4 CPP14Parser.g4
+						javac -cp ./antlr-4.11.1-complete.jar *.java
+						java -cp .:antlr-4.11.1-complete.jar org.antlr.v4.gui.TestRig CPP14 translationUnit -tree -gui example.cpp
+					</code></pre>
+
+					<pre data-id="code-animation"><code data-trim><script type="text/template">
+						#include <iostream>
+						int main()
+						{
+							std::cout << "Hello World!" << std::endl;
+							return 0;
+						}						
+					</script></code></pre>
+				</section>
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<h3>Zadanie 2 cz. 1</h3>
+					<small style="text-align: left;">Utworzyć publiczne repozytorium na github.com. Zmieścić link w
+						<a href="https://forms.office.com/r/KKds3hSuv4">formularzu.</a>
+					</small>
+					<small style="text-align: left;">Do końca zajęć laboratoryjnych za pomocą publicznie dostępnych
+						gramatyk (Java, Python
+						lub C#), wygenerować za pomocą ANTLR4
+						drzewo składniowe dla własnego przykładowego kodu składającego się z przynajmniej jednej
+						pętli. Cały proces należy udokumentować i zamieścić w repozytorium w postaci pliku
+						zapisanego w języku
+						Markdown.</small>
+				</section>
+
+				<section>
+					<h3>Wzorowy pokaz</h3>
+					<pre data-id="code-animation"><code data-trim data-line-numbers="1|3-6|3|4|5|8-14">
+						grammar Calculator;
+
+						expr: op=('*'|'/') expr expr # MulDiv
+							| op=('+'|'-') expr expr # AddSub
+							| INT                    # Int
+							;
+						
+						INT: [0-9]+ ;
+						DOT: '.';
+						TIMES: '*' ;
+						DIV: '/' ;
+						PLUS: '+' ;
+						MINUS: '-' ;
+						WS : [ \t\r\n]+ -> skip ;
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Wzorowy pokaz</h3>
+					<pre data-id="code-animation"><code data-trim>
+						/ * 5 3 + 2 3
+					</code></pre>
+					<img src="assets/ss-diagram-example.png" style="height: 400px;" />
+				</section>
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<h3>Zadanie 2 cz. 2</h3>
+					<small style="text-align: left; margin: top 4px;">Opracować gramatyke kalkulatora, wygenerować Lexer
+						i Parser, a następnie zaimplementować jego
+						działanie rozszerzając wybraną klase np. *BaseListener lub *BaseVisitor.</small>
+					<small style="text-align: left; margin: top 4px;">Wymagana funkcjonalność to: dodawanie,
+						odejmowanie, mnożenie, dzielnie, potęgowanie,
+						pierwiastkowanie zgodnie z kolejnością wykonywania działań.</small>
+					<small style="text-align: left; margin: top 4px;">Dodatkowe funkcjonalności (np. obsługa całek
+						oznaczonych) będą podwyższały ocene z
+						zadania.</small>
+					<small style="text-align: left; margin: top 4px;"><a
+							href="https://github.com/Kajkitsu/antlr4calcpl">Przykładowy kalkulator</a> w notacji
+						polskiej. </small>
+					</small>
+					<small style="margin: 10px;">
+						<b><span class="fragment highlight-red">Termin oddania pracy: 23.11.2022r. godz:
+								24:00</span></b>
+					</small>
+				</section>
+			</section>
+			<section data-background-gradient="linear-gradient(45deg, #83be3c, #29448b)">
+				<section>
+					<h2>Script engine</h2>
+				</section>
+				<section>
+					<h3>A komu to potrzebne? A dlaczego?</h3>
+					<small style="text-align: left; margin: 20px;">Script Engine to interpretator języka programowania
+						komputerowego, którego funkcją jest interpretacja tekstu programów pochodzącego od użytkowników,
+						tłumaczenie takiego tekstu na kod maszynowy wykonywalny przez komputery oraz realizacja szeregu
+						funkcji.
+					</small>
+
+					<small style="text-align: left; margin: 20px;">W praktyce jest on wykorzystywany jako interfejs do
+						wpływania w zaawansowany (nieprzewidziany w trakcie implementacji) sposób w stan systemu
+						informatycznego. Przykładowo jest to korekcja danych znajdujących się w systemie lub wywoływanie
+						zadań znajdujących się w harmonogramie (ang. scheduling) realizujących np. integracje z
+						systemami zewnętrznymi.
+					</small>
+				</section>
+
+				<section>
+					<h3>Pokaz z objaśnieniem</h3>
+					<img src="assets/class_diagram.png" style="height: 700px;" />
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Reprezentacja encji w bazie NOSQL</h2>
+					<pre data-id="code-animation"><code data-trim data-line-numbers="1-14|6,11|17-28|22-26|9-14">
+						//Journal
+						{
+							"id": "1",
+							"baseScore": 100.0,
+							"title": "Biuletyn WAT",
+							"publisherId": "2",
+							"issn": "1234-5865"
+						}
+						// Publisher
+						{
+							"id": "2",
+							"name": "Wydawnictwo WAT",
+							"location": "Warszawa",
+						}
+
+
+						//Journal with Publisher
+						{
+							"id": "1",
+							"baseScore": 100.0,
+							"title": "Biuletyn WAT",
+							"publisher": {
+								"id": "2",
+								"name": "Wydawnictwo WAT",
+								"location": "Warszawa",
+							},
+							"issn": "1234-5865"
+						}
+					</code></pre>
+				</section>
+				<section>
+					<h2>👨‍💻</h2>
+					<h3>Live coding</h3>
+				</section>
+
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<div style="text-align: left;">
+						<h3>Zadanie 3</h3>
+						<small>Opracować aplikacje, która:
+							<ul>
+								<span class="fragment highlight-green">
+									<li>posiada przynajmniej 2 encje;</li>
+									<li>posiada api restowe realizujące przynajmniej po jednej operacji: GET, POST, PUT,
+										DELETE;</li>
+									<li>posiada system zarządzania bazą danych, który ma być umieszczony w kontenerze i
+										odpowiednio uruchomiony;</li>
+									<li>jest napisane w jednym z języków: Java, Kotlin, Scala, Python lub C#;</li>
+								</span>
+								<li>ma dostarczać dodatkowe endpoint restowy do wykonywania skryptów wpływających na
+									stan aplikacji;</li>
+								<li>ma w README.md zamieszczony przykładowy skrypt do realizacji za pomocą endpointu do
+									wykonywania skryptów. Logika skryptu ma wykraczać poza podstawowe operacje zapisu i
+									odczytu z bazy danych;</li>
+								<!-- <li>ma posiadać mechanizm wykonujący zdefiniowane zadania zgodnie z harmonogramem zadań
+									(ang. job scheduler) np. <a
+										href="https://github.com/TimeAndSpaceIO/CronScheduler">CroneScheduler</a>*;</li>
+								<li>ma dostarczać odpowiednie endpointy restowe do modyfikowania, edytowania i podglądu
+									zadań z harmonogramu;</li>
+								<li>ma w README.md zamieszczony przykładowy skrypt scheduler-owy, który w trakcie
+									wykonywania skorzysta z zewnętrznego API. Dopuszczalne jest dodanie dodatkowych
+									serwisów w aplikacji realizujących komunikacje z zewnętrznym API. W skrypcie muszą
+									znaleźć się instrukcje wpływające na wywołanie metody z zewnętrznego serwisu;*</li> -->
+								<li>ma w README.md zapisane wszelkie dodatkowe operacje, wraz z poleceniami uruchomienia
+									aplikacji.</li>
+							</ul>
+						</small>
+						<!-- <small style="text-align: right; font-size: 20px;">
+							* zadania wymagane przy ocenie na 5
+						</small> -->
+					</div>
+				</section>
+				<section data-background="#202020">
+					<h3>Zadanie 3</h3>
+					<small style="margin: 10px;">
+						<br />
+						Do końca trwania laboratoriów należy za pomocą <a
+							href="https://forms.office.com/r/2vbjxfX0fV">formularza</a>
+						przesłać link do <b>publicznego</b> repozytorium github.com, w którym będzie opracowywane
+						zadanie.
+					</small>
+					<small>
+						<b><span class="fragment highlight-red">Termin oddania pracy: 21.12.2022r. godz:
+								24:00</span></b>
+					</small>
+				</section>
+			</section>
+			<section data-background-gradient="linear-gradient(60deg, #ae9852, #a3548b)">
+				<section>
+					<h2>Code generation and manipulation</h2>
+				</section>
+				<section>
+					<h3>Wprowadzam w sytuacje taktyczną</h3>
+					<small style="text-align: left; margin: 20px;">
+						Firma „A” utrzymuje duży system informatyczny do zarządzania danymi badawczymi, informacjami
+						naukowymi i pracownikami uczelni. Posiada ona dużą liczbę klientów, w tym WAT, który oczkuje, że
+						w encji opisującej autora znajdzie się pole określające jego stopień wojskowy. Zmiany takiej nie
+						można wprowadzić dla całego systemu, ponieważ większość uczelni nie oczkuje takiego pola, więc
+						zmiana musi być wyłącznie na systemie uruchomianym dla WAT.
+					</small>
+				</section>
+				<section>
+					<h4>Możliwe rozwiązania</h4>
+					<p>
+					<ul>
+						<li class="fragment fade-in-then-semi-out">
+							Osobna gałąź
+						</li>
+						<li class="fragment fade-in-then-semi-out">
+							Feature toggle
+						</li>
+						<li class="fragment fade-in-then-semi-out">
+							Refleksja - manipulacja kodem w czasie wykonywania programu
+						</li>
+					</ul>
+					</p>
+				</section>
+				<section>
+					<h2>👨‍💻</h2>
+					<h3>Live coding</h3>
+				</section>
+
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<div style="text-align: left;">
+						<h3>Zadanie 4</h3>
+						<small>Do aplikacji z poprzedniego zadania dodać możliwość rozszerzania encji za pomocą
+							mechanizmu refleksji o dodatkowe pola
+							poprzez dodatkową konfigurację np. z pliku JSON, gradle.properties lub parametrów
+							systemowych. Funkcjonalność ma dodatkowo rozszerzyć klasy DTO wykorzystywanych przez warstwe
+							kontrolera, tak aby endpointy restowe obsługiwały nowe pola. W README.md należy opisać
+							sposób, w jaki należy dostarczyć do systemu konfiguracje.
+						</small>
+						<small style="margin: 10px;">
+							Prace należy kontynuować na repozytorium z poprzedniego zadania.
+						</small>
+						<small style="margin: 10px;">
+							<b><span class="fragment highlight-red">Termin oddania pracy: 21.12.2022r. godz:
+									24:00</span></b>
+						</small>
+					</div>
+
+
+				</section>
+			</section>
+
+		</div>
+
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/search/search.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+
+		// Also available as an ES module, see:
+		// https://revealjs.com/initialization/
+		Reveal.initialize({
+			controls: true,
+			progress: true,
+			center: true,
+			hash: true,
+
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight]
+		});
+
+	</script>
+
+</body>
+
+</html>
