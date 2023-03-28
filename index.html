@@ -50,21 +50,21 @@
 							<li>Każde przedstawione zadanie podlega ocenie 2-5;</li>
 							<li>W przypadku stwierdzenia niesamodzielności w wykonaniu pracy zostanie ona wliczona do
 								średniej
-								jako 0;</li>
+								jako 0.</li>
 							<li>Ostateczna ocena z laboratoriów będzie wynikała ze średniej z wszystkich zadań
-								laboratoryjnych;
+								laboratoryjnych.
 							</li>
-							<li>Obecność na wszystkich zajęciach jest obowiązkową. Zaległości można usunąć uczestnicząc
+							<li>Obecność na wszystkich zajęciach jest obowiązkowa. Zaległości można usunąć uczestnicząc
 								w
-								zajęciach z inną grupą, po wcześniejszym poinformowaniu prowadzącego. W przypadku gdy
+								zajęciach z inną grupą, po wcześniejszym poinformowaniu prowadzącego. W przypadku, gdy
 								zajęcia z pozostałymi grupami już się odbyły, można odrobić zajęcia na konsultacjach.
-								Dopuszczalna liczba nieobecności to 1 spotkanie.</li>
+								Dopuszczalna liczba nieobecności: 1.</li>
 							<li>Zajęcia będą realizowane z wykorzystaniem systemu kontroli wersjii - git. Za termin
-								realizacji uznaję się godzinę ostatniego commit-u. Czas na wykonanie zadnia
+								realizacji uznaje się godzinę ostatniego commit-u. Czas na wykonanie zadania
 								to dwa tygodnie liczone od 23:59 dnia, w którym zostały zrealizowane zajęcia. Jeżeli
 								termin
 								oddania zadania przypadnie po rozpoczęciu sesji
-								egzaminacyjnej. Wtedy za termin oddania zadania przyjmuje się 24h przed rozpoczęciem
+								egzaminacyjnej, wtedy za termin oddania zadania przyjmuje się 24h przed rozpoczęciem
 								sesji
 								egzaminacyjnej.</li>
 						</ol>
@@ -88,7 +88,7 @@
 									<li>Zakres funkcjonalności rozwiązania;</li>
 									<li>Samodzielność;</li>
 									<li>Zastosowanie dobrych praktyk programistycznych;</li>
-									<li>Wykorzystanie systemu kontroli wersjii.</li>
+									<li>Wykorzystanie systemu kontroli wersji.</li>
 								</ul>
 							</li>
 						</ol>
@@ -101,7 +101,7 @@
 				</section>
 				<section>
 					<h3>A komu to potrzebne? A dlaczego? </h3>
-					<small style="text-align: left;">Wyrażenia regularne - (ang. regular expression, w skrócie regex lub
+					<small style="text-align: left;">Wyrażenia regularne (ang. regular expression, w skrócie regex lub
 						regexp) - wzorzec
 						opisujący łańcuch symboli. Teoria wyrażeń regularnych jest związana z teorią języków
 						regularnych.</small>
@@ -146,15 +146,10 @@
 						WME21BX1S1 ; WME21BX2S1 ; WME21BX3S1 ; WME21BX4S1 ; WME22B1N5 ; WME22BX1S1 ; WME22BX2S1 ;
 						WME22BX3S1 ; WME22BX4S1</small>
 				</section>
-				<section>
-					<h3>Pokaz z objaśnieniem</h3>
-					<p><a href="https://regex101.com/r/HgaRAs/1">Przykład z cytatem</a></p>
-					<img src="assets/ss-regex-2.png" style="height: 500px;" />
-				</section>
 				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
 					<h3>Zadanie 1 👨‍💻</h3>
-					<small style="text-align: left; margin: 20px">Zaimplementuj klasę umożliwiająca na podstawie maila z
-						domeny WAT pozyskanie informacji o
+					<small style="text-align: left; margin: 20px">Zaimplementuj klasę umożliwiającą, na podstawie maila z
+						domeny WAT, pozyskanie informacji o
 						właścicielu takich jak:
 						<br />
 						<ul>
@@ -166,7 +161,7 @@
 						<br />
 						Klasa ma realizować testy jednostkowe, przedstawione w następnej sekcji. Dopisz dodatkowe 10
 						przypadków testowych.
-						Do końca trwania laboratoriów przesłać za pomocą <a
+						Do końca trwania laboratoriów prześlij za pomocą <a
 							href="https://forms.office.com/r/cexRADC2at">formularza</a>
 						link do utworzonego <b>publicznego</b> repozytorium na github.com
 					</small>
@@ -191,7 +186,7 @@
 									for x in self.data:
 										with self.subTest():
 											# given
-											mail = x[0]
+											mail = x[0]to
 											is_student = x[1]
 											# then
 											extractor = EmailExtractor(email)
@@ -200,17 +195,7 @@
 							
 								def test_is_male(self):
 									for x in self.data:
-										with self.subTest():
-											# given
-											email = x[0]
-											is_male = x[2]
-											# then
-											extractor = EmailExtractor(email)
-											# expect
-											self.assertEqual(is_male, extractor.is_male())
-							
-									def test_get_name(self):
-										for x in self.data:
+										with self.subTest():to
 											with self.subTest():
 												# given
 												email = x[0]
@@ -229,7 +214,7 @@
 												# then
 												extractor = EmailExtractor(email)
 												# expect
-												self.assertEqual(surname, extractor.get_surname())
+												self.assertEqual(surntoame, extractor.get_surname())
 							
 							
 						</script>
@@ -245,11 +230,11 @@
 					<h3>Co to jest i do czego służy?</h3>
 					<small>
 						ANTLR (ang. ANother Tool for Language Recognition) to narzędzie służące do tworzenia
-						kompilatorów oraz translatorów z opisu gramatyki zawierającego akcje w języku Java, C++, C# lub
+						kompilatorów oraz translatorów z opisu gramatyki, zawierające akcje w języku Java, C++, C# lub
 						Python.
 					</small>
 					<small>
-						Domyślnie ANTLR generuje lekser i parser w Javie, a plik z gramatyką ma rozszerzenie <i>.g4</i>.
+						Domyślnie ANTLR generuje lekser i parser w Javie, a plik z gramatyką ma rozszerzenie <em>.g4</em>.
 						Dostępne są również implementacje narzędzia w <a
 							href="https://www.antlr.org/download.html">innych
 							językach</a>.
@@ -323,19 +308,18 @@
 				</section>
 				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
 					<h3>Zadanie 2</h3>
-					<small style="text-align: left; margin-left: 30px;" style="text-align: left;">
-						Utworzyć publiczne
-						repozytorium na github.com. 
-						<br />Zmieścić link w
+					<small style="text-align: left; margin: 30px;">
+						Utworz publiczne
+						repozytorium na github.com i umieść link w
 						<a href="https://forms.office.com/r/KKds3hSuv4">formularzu.</a>
-						<br />
-						Opracować gramatyke kalkulatora, wygenerować Lexer
-						i Parser, a następnie zaimplementować jego
-						działanie rozszerzając wybraną klase np. *BaseListener lub *BaseVisitor.
-						<br />
-						Wymagana funkcjonalność to: dodawanie,
-						odejmowanie, mnożenie, dzielnie, potęgowanie,
-						pierwiastkowanie zgodnie z kolejnością wykonywania działań.
+						<br style="margin: 10px;" />
+						Opracuj gramatykę kalkulatora, wygeneruj Lexer
+						i Parser, a następnie zaimplementuj jego
+						działanie, rozszerzając wybraną klasę, np. *BaseListener lub *BaseVisitor.
+						<br style="margin: 10px;" />
+						Wymagana funkcjonalności to: dodawanie,
+						odejmowanie, mnożenie, dzielenie, potęgowanie,
+						pierwiastkowanie, zgodnie z kolejnością wykonywania działań.
 					</small>
 				</section>
 			</section>
