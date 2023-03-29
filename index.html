@@ -169,7 +169,7 @@
 				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
 					<h3>Zadanie 1 👨‍💻</h3>
 					<pre style="font-size: 14px" data-id="code-animation">
-						<code class="hljs python" data-trim data-line-numbers="1-55|1|4-11|13-22|24-33|35-44|46-55|1-55"><script type="text/template">
+						<code class="hljs python" data-trim data-line-numbers="1-55|1|4-11|13-22|24-33|35-43|45-54|1-54"><script type="text/template">
 							import unittest
 
 							class EmailExtractorTestCase(unittest.TestCase):
@@ -186,7 +186,7 @@
 									for x in self.data:
 										with self.subTest():
 											# given
-											mail = x[0]to
+											email = x[0]
 											is_student = x[1]
 											# then
 											extractor = EmailExtractor(email)
@@ -195,26 +195,25 @@
 							
 								def test_is_male(self):
 									for x in self.data:
-										with self.subTest():to
-											with self.subTest():
-												# given
-												email = x[0]
-												name = x[3]
-												# then
-												extractor = EmailExtractor(email)
-												# expect
-												self.assertEqual(name, extractor.get_name())
+										with self.subTest():
+											# given
+											email = x[0]
+											name = x[3]
+											# then
+											extractor = EmailExtractor(email)
+											# expect
+											self.assertEqual(name, extractor.get_name())
 							
-									def test_get_surname(self):
-										for x in self.data:
-											with self.subTest():
-												# given
-												email = x[0]
-												surname = x[4]
-												# then
-												extractor = EmailExtractor(email)
-												# expect
-												self.assertEqual(surntoame, extractor.get_surname())
+								def test_get_surname(self):
+									for x in self.data:
+										with self.subTest():
+											# given
+											email = x[0]
+											surname = x[4]
+											# then
+											extractor = EmailExtractor(email)
+											# expect
+											self.assertEqual(surntoame, extractor.get_surname())
 							
 							
 						</script>
