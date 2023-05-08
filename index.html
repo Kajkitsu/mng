@@ -148,7 +148,8 @@
 				</section>
 				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
 					<h3>Zadanie 1 👨‍💻</h3>
-					<small style="text-align: left; margin: 20px">Zaimplementuj klasę umożliwiającą, na podstawie maila z
+					<small style="text-align: left; margin: 20px">Zaimplementuj klasę umożliwiającą, na podstawie maila
+						z
 						domeny WAT, pozyskanie informacji o
 						właścicielu takich jak:
 						<br />
@@ -233,7 +234,8 @@
 						Python.
 					</small>
 					<small>
-						Domyślnie ANTLR generuje lekser i parser w Javie, a plik z gramatyką ma rozszerzenie <em>.g4</em>.
+						Domyślnie ANTLR generuje lekser i parser w Javie, a plik z gramatyką ma rozszerzenie
+						<em>.g4</em>.
 						Dostępne są również implementacje narzędzia w <a
 							href="https://www.antlr.org/download.html">innych
 							językach</a>.
@@ -324,9 +326,165 @@
 			</section>
 			<section data-background-gradient="linear-gradient(45deg, #83be3c, #29448b)">
 				<section>
-					<h2>TBA</h2>
+					<h2>Bytecode</h2>
 				</section>
+				<section>
+					<h3>javac</h3>
+					<small>
+						<em><b>javac</b></em> - jest to kompilator języka Java, który przetwarza kod źródłowy
+						napisany w języku Java na kod bajtowy. Umożliwia również wykrywanie błędów składniowych oraz
+						semantycznych w kodzie źródłowym. Przykładowe użycie <em><b>javac Example.java</b></em>. Javac
+						oferuje szereg opcji kompilacji, takich jak ustawienia ścieżek klas, tryb debugowania czy wybór
+						wersji Javy, do której ma być skompilowany kod źródłowy.
+					</small>
+				</section>
+				<section>
+					<h3>javac</h3>
+					<small>
+						<em><b>javac</b></em> - jest to kompilator języka Java, który przetwarza kod źródłowy
+						napisany w języku Java na kod bajtowy. Umożliwia również wykrywanie błędów składniowych oraz
+						semantycznych w kodzie źródłowym. Przykładowe użycie <em><b>javac Example.java</b></em>. Javac
+						oferuje szereg opcji kompilacji, takich jak ustawienia ścieżek klas, tryb debugowania czy wybór
+						wersji Javy, do której ma być skompilowany kod źródłowy.
+					</small>
+					<br style="margin: 30px;" />
+					<small>Istnieją inne języki programowania, które zachowują zgodność z językiem Java, dlatego że są
+						one wykonywane na JVM. Np. Kotlin, Scala, Groovy. Wszystkie one kompilują się do bytecodu,
+						którego forma nie różni się szczególnie, względem tego, co zostanie wygenerowane przez javac.
+					</small>
+				</section>
+				<section>
+					<h3>
+						Kompilatory JIT (Just-In-Time)
+					</h3>
+					<small>
+						C1 i C2 to dwa rodzaje kompilatorów JIT (Just-In-Time) używane w wirtualnej maszynie Javy (JVM).
+						C1 jest kompilatorem szybkiego uruchamiania (ang. client), który skupia się na szybkim
+						uruchamianiu aplikacji i optymalizacji kodu na początku jego działania. C2 jest kompilatorem
+						serwerowym (ang. server), który skupia się na uzyskaniu jak najlepszej wydajności poprzez
+						dogłębną analizę kodu i zoptymalizowanie go do granic możliwości. W starszych wersjach Javy,
+						użytkownik musiał ręcznie wybierać między tymi dwoma kompilatorami, ale w Javie 7 wprowadzono
+						tzw. kompilację stopniowaną (ang. tiered compilation), która umożliwia wykorzystanie obu
+						kompilatorów w jednej aplikacji, tak aby uzyskać jak najlepsze wyniki wydajnościowe.
+					</small>
+				</section>
+				<section>
+					<h3>JIT w procesie uruchamiania aplikacji</h3>
+					<img src="assets/JIT.png" />
+				</section>
+				<section>
+					<h3>JIT w procesie uruchamiania aplikacji</h3>
+					<small>
+						Podczas wykonywania kodu przez JVM, nie zaczyna ona natychmiast kompilować kodu. Istnieją dwa
+						powody:
+						<ul>
+							<li>
+								Po pierwsze, jeśli kod zostanie wykonany tylko raz, to jego kompilacja jest praktycznie
+								marnowaniem mocy obliczeniowej. Szybsze jest interpretowanie bytecode'u niż jego
+								kompilowanie i wykonywanie
+								skompilowanego kodu (tylko raz).
+							</li>
+							<li>
+								Po drugie, im więcej razy JVM wykonuje daną metodę lub pętlę, tym więcej informacji ma o
+								tym jak zachowuje się dany kod. Pozwala to na dokonywanie licznych optymalizacji przy
+								kompilacji kodu w trakcie działania. JVM tworzy
+								skompilowany kod, który radzi sobie z niepewnościami, co wiąże się z deoptymalizacją, a
+								następnie reoptymalizuje kodu.
+							</li>
+						</ul>
+					</small>
+				</section>
+				<section>
+					<h3>
+						Zamiana na stosie (OSR - on-stack replacement)
+					</h3>
+					<small>
+						Kompilacja JIT jest procesem asynchronicznym: W czasie gdy JVM decyduje, która metoda powinna
+						zostać skompilowana, jest ona umieszczana w kolejce. Zamiast czekać na kompilacje, JVM
+						interpretuję metodę, ale za następnym razem, gdy metoda zostanie wywołana kolejny razy, JVM
+						będzie
+						mógł wykonać jej skompilowaną wersje. To samo dotyczy się również pętli. Wprzypadku, gdy pętla
+						jest długo wykonana, również ona trafia do kolejki. JVM jednak nie może czekać, aż zostanie ona
+						skompilowana i kontynuuję, interpretując daną iteracje. Gdy tylko kod dla pętli zostanie
+						skompilowany, zostanie
+						on podmieniony na stosie, a następna iteracja skorzysta z dużo szybszej skompilowanej wersji
+						kodu. Taki proces nazywa się zamianą na stosie (OSR - on-stack replacement).
+					</small>
+				</section>
+				<section>
+					<h3>
+						Kompilacja stopniowa
+					</h3>
+					<small>
+						Kompilator JIT kiedyś miał dwie wersje: kompilator klienta i serwera. Jak nazwa wskazuje,
+						kompilator klienta (C1) jest używany do aplikacji po stronie klienta, podczas gdy kompilator
+						serwera (C2) jest używany do aplikacji po stronie serwera. Główna różnica między tymi dwoma
+						kompilatorami polega na ich agresywności w kompilowaniu kodu. Kompilator C1 zaczyna kompilować
+						szybciej niż C2. Oznacza to, że na początku wykonywania kodu, kompilator C1 będzie szybszy.
+						Jednakże, kompilator C2 robi lepsze optymalizacje w skompilowanym kodzie, wykorzystując wiedzę,
+						którą zdobywa podczas oczekiwania. Ostatecznie, kod produkowany przez kompilator C2 będzie
+						szybszy niż ten produkowany przez kompilator C1. Kompilacja stopniowa (tiered compilation)
+						wchodzi w grę poprzez zastosowanie przez JVM kompilatora C1 na początku i przejście na
+						kompilator C2, gdy kod staje się bardziej "gorący".
+					</small>
+				</section>
+				<section>
+					<h3>Optymalizacja JIT</h3>
+					<small>
+						<ul>
+							<li>
+								Inlining - polega na zamianie wywołania metody na wstawienie jej kodu bezpośrednio w
+								miejsce wywołania, co pozwala na oszczędzenie czasu potrzebnego na wywołanie metody oraz
+								zmniejszenie narzutu związanego z przekazywaniem argumentów.
+							</li>
+							<li>
+								Loop unrolling - polega na rozwinięciu pętli, czyli zastąpieniu jej wielokrotnym
+								powtarzaniem kodu, co pozwala na zmniejszenie narzutu związanego z pętlą.
+							</li>
+							Eliminacja niepotrzebnych warunków - polega na usunięciu warunków, które zawsze zwracają
+							true lub false, co pozwala na zmniejszenie narzutu związanego z ich wykonywaniem.
+							</li>
+							<li>
+								Dead code elimination - polega na usuwaniu kodu, który nigdy nie jest wykonywany, co
+								pozwala na zmniejszenie rozmiaru kodu oraz przyspieszenie jego działania.
+							</li>
+						</ul>
+						<br />
+						<br />
+						JIT również wykorzystuje informacje o typach zmiennych w trakcie kompilacji do bardziej
+						efektywnego generowania kodu. Na przykład, jeśli JIT wie, że zmienna jest typu int, to może
+						wygenerować kod, który operuje na tej zmiennej w bardziej zoptymalizowany sposób niż w przypadku
+						zmiennej typu ogólnego Object.
+					</small>
+				</section>
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<h3>Zadanie 1 👨‍💻</h3>
+
+					<small>
+						<ul>
+							<li>Napisz kod realizujący prosty algorytm (minimum: 1 metoda, 1 instrukcja
+								warunkowa, 1 pętla) np. realizujący sortowanie bąbelkowe.</li>
+							<li>Skompiluj kod (np. <em><b>javac
+										Example.java</b></em> ), a następnie (np. javap -c -s -constans Example.class)
+								wyświetl bytecode utworzonego algorytmu.</li>
+							<li>Posiłkując się informacjami
+									dostępnymi w internecie np. <a
+									href="https://en.wikipedia.org/wiki/List_of_Java_bytecode_instructions">List_of_Java_bytecode_instructions</a>, opisz dokładnie wygenerowany kod.</li>
+							<li>Następnie taki sam algorytm zaimplementuj w innym języku wykorzystującym JVM, np.
+								Kotlin.
+								Wygeneruj bytecode i porównaj go z wcześniej wygenerowanym kodem. Opisz różnice, jeżeli
+								występują.</li>
+						</ul>
+						<br />
+						<br />
+						Do końca trwania laboratoriów prześlij za pomocą <a
+							href="https://forms.office.com/r/2vbjxfX0fV">formularza</a>
+						link do utworzonego <b>publicznego</b> repozytorium na github.com
+					</small>
+				</section>
+
 			</section>
+
 			<section data-background-gradient="linear-gradient(60deg, #ae9852, #a3548b)">
 				<section>
 					<h2>TBA</h2>
