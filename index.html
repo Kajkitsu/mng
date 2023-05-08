@@ -388,7 +388,8 @@
 								Po drugie, im więcej razy JVM wykonuje daną metodę lub pętlę, tym więcej informacji ma o
 								tym jak zachowuje się dany kod. Pozwala to na dokonywanie licznych optymalizacji przy
 								kompilacji kodu w trakcie działania. JVM tworzy
-								skompilowany kod, który radzi sobie z pewnymi niepewnościami, co wiąże się z deoptymalizacją, a
+								skompilowany kod, który radzi sobie z pewnymi niepewnościami, co wiąże się z
+								deoptymalizacją, a
 								następnie reoptymalizuje kodu.
 							</li>
 						</ul>
@@ -448,6 +449,11 @@
 								Dead code elimination - polega na usuwaniu kodu, który nigdy nie jest wykonywany, co
 								pozwala na zmniejszenie rozmiaru kodu oraz przyspieszenie jego działania.
 							</li>
+							<li>
+								Branch predicting - polega na przewidywaniu warunków logicznych (branch) w kodzie
+								programu i podejmowania decyzji, której gałęzi należy się spodziewać, zanim warunek
+								zostanie faktycznie wykonany.
+							</li>
 						</ul>
 						<br />
 						<br />
@@ -468,8 +474,9 @@
 										Example.java</b></em> ), a następnie (np. javap -c -s -constans Example.class)
 								wyświetl bytecode utworzonego algorytmu.</li>
 							<li>Posiłkując się informacjami
-									dostępnymi w internecie np. <a
-									href="https://en.wikipedia.org/wiki/List_of_Java_bytecode_instructions">List_of_Java_bytecode_instructions</a>, opisz dokładnie wygenerowany kod.</li>
+								dostępnymi w internecie np. <a
+									href="https://en.wikipedia.org/wiki/List_of_Java_bytecode_instructions">List_of_Java_bytecode_instructions</a>,
+								opisz dokładnie wygenerowany kod.</li>
 							<li>Następnie taki sam algorytm zaimplementuj w innym języku wykorzystującym JVM, np.
 								Kotlin.
 								Wygeneruj bytecode i porównaj go z wcześniej wygenerowanym kodem. Opisz różnice, jeżeli
