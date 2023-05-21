@@ -491,12 +491,113 @@
 				</section>
 
 			</section>
-
 			<section data-background-gradient="linear-gradient(60deg, #ae9852, #a3548b)">
 				<section>
-					<h2>TBA</h2>
+					<h2>Script engine</h2>
+				</section>
+				<section>
+					<h3>A komu to potrzebne? A dlaczego?</h3>
+					<small style="text-align: left; margin: 20px;">Script Engine to interpretator języka programowania
+						komputerowego, którego funkcją jest interpretacja tekstu programów pochodzącego od użytkowników,
+						tłumaczenie takiego tekstu na kod maszynowy wykonywalny przez komputery oraz realizacja szeregu
+						funkcji.
+					</small>
+
+					<small style="text-align: left; margin: 20px;">W praktyce jest on wykorzystywany jako interfejs do
+						wpływania w zaawansowany (nieprzewidziany w trakcie implementacji) sposób w stan systemu
+						informatycznego. Przykładowo jest to korekcja danych znajdujących się w systemie lub wywoływanie
+						zadań znajdujących się w harmonogramie (ang. scheduling) realizujących np. integracje z
+						systemami zewnętrznymi.
+					</small>
+				</section>
+				<section>
+					<h3>GraalVM</h3>
+					<small>GraalVM to maszyna wirtaulna oraz platforma stworzona przez firmę Oracle. Zapewnia ona
+						środowisko uruchomieniowe dla wielu języków programowania, takich jak Java, JavaScript, Python,
+						Ruby, R oraz innych. Głównym celem GraalVM jest umożliwienie programistom korzystania z różnych
+						języków programowania i integracji ich w jednym projekcie. Dzięki temu można pisać aplikacje,
+						które wykorzystują różne języki
+						jednocześnie, co daje większą elastyczność i umożliwia wybór najlepszego narzędzia do
+						konkretnego zadania.
+					</small>
+					<small>
+						GraalVM oferuje także kompilację just-in-time (JIT) oraz ahead-of-time (AOT), co pozwala na
+						optymalizację wydajności
+						aplikacji. Dzięki temu programy uruchamiane na GraalVM mogą być szybsze niż te uruchamiane na
+						tradycyjnych maszynach
+						wirtualnych.
+					</small>
+				</section>
+
+				<section>
+					<h3>Pokaz z objaśnieniem</h3>
+					<img src="assets/class_diagram.png" style="height: 700px;" />
+				</section>
+				<section data-auto-animate>
+					<h2 data-id="code-title">Reprezentacja encji w bazie NOSQL</h2>
+					<pre data-id="code-animation"><code data-trim data-line-numbers="1-14|6,11|17-28|22-26|9-14">
+									//Journal
+									{
+										"id": "1",
+										"baseScore": 100.0,
+										"title": "Biuletyn WAT",
+										"publisherId": "2",
+										"issn": "1234-5865"
+									}
+									// Publisher
+									{
+										"id": "2",
+										"name": "Wydawnictwo WAT",
+										"location": "Warszawa",
+									}
+			
+			
+									//Journal with Publisher
+									{
+										"id": "1",
+										"baseScore": 100.0,
+										"title": "Biuletyn WAT",
+										"publisher": {
+											"id": "2",
+											"name": "Wydawnictwo WAT",
+											"location": "Warszawa",
+										},
+										"issn": "1234-5865"
+									}
+								</code></pre>
+				</section>
+				<section>
+					<h2>👨‍💻</h2>
+					<h3>Live coding</h3>
+					<small>Kod źródłowy <a
+							href="https://github.com/Kajkitsu/knowledge-mngkw/tree/15e7d5abf3e8b598381fbc759f345ed751a49155">na
+							tym commicie</a>.</small>
+				</section>
+
+				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
+					<h3>Zadanie 4</h3>
+					<span class="fragment">
+						<p style="color: #ff2c2d;">
+							Uwaga! Czas na wykonanie zadania: do końca trwania zajęć laboratoryjnych.
+						</p>
+					</span>
+					<small style="margin: 10px;">Rozbuduj aplikacje Spring Boot, o endpoint umożliwiający
+						wykonywanie skryptów,
+						wykorzystując narzędzie GraalVM.
+					</small>
+					<small style="margin: 10px;">
+						Opracuj skrypt rozwiązujący zdefiniowany przez Ciebie problem. Skrypt wraz z opisem problemu
+						zamieść w README.md.
+					</small>
+					<small style="margin: 10px;">
+						Do końca trwania laboratoriów należy za pomocą <a
+							href="https://forms.office.com/e/i5aNbeCt5U">formularza</a>
+						przesłać link do <b>publicznego</b> repozytorium github.com, w którym będzie opracowywane
+						zadanie.
+					</small>
 				</section>
 			</section>
+
 
 		</div>
 
