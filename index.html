@@ -126,6 +126,68 @@
 						WME21BX1S1 ; WME21BX2S1 ; WME21BX3S1 ; WME21BX4S1 ; WME22B1N5 ; WME22BX1S1 ; WME22BX2S1 ;
 						WME22BX3S1 ; WME22BX4S1</small>
 				</section>
+				<section>
+					<h3>
+						Przykład użycia wyrażenia reguralnego w Python
+					</h3>
+					<pre style="font-size: 16px" data-id="code-animation"><code class="hljs python" data-trim >
+						import re
+
+						# Tekst do przeszukania
+						tekst = 'Przykładowy tekst do przeszukania 123'
+						
+						# Wzorzec regex
+						pattern = r'\d+'  # Wyszukuje wszystkie ciągi cyfr
+						
+						# Użycie funkcji findall do wyszukiwania wszystkich wystąpień wzorca
+						wynik = re.findall(pattern, tekst)
+						
+						print(wynik)  # Wyświetla: ['123']
+
+						# Użycie funkcji search do wyszukiwania pierwszego wystąpienia wzorca
+						wynik = re.search(pattern, tekst)
+
+						if wynik:
+							print(wynik.group())  # Wyświetla: '123'
+						else:
+							print("Nie znaleziono dopasowania")
+					</code></pre>
+					<p><a href="https://www.w3schools.com/python/python_regex.asp">Więcej przykładów</a></p>
+				</section>
+				<section>
+					<h3>
+						Przykład użycia wyrażenia reguralnego w Javie
+					</h3>
+					<pre style="font-size: 16px" data-id="code-animation"><code class="hljs java" data-trim><script type="text/template">
+						import java.util.regex.Matcher;
+						import java.util.regex.Pattern;
+						
+						public class Main {
+							public static void main(String[] args) {
+								// Tekst do przeszukania
+								String tekst = "Przykładowy tekst do przeszukania 123";
+						
+								// pattern regex z nazwaną grupą
+								String pattern = "(?<mojaGrupa>\\d+)";  // Wyszukuje wszystkie ciągi cyfr
+						
+								// Kompilacja wzorca
+								Pattern pattern = Pattern.compile(pattern);
+						
+								// Utworzenie obiektu Matcher
+								Matcher matcher = pattern.matcher(tekst);
+						
+								// Wyszukiwanie pierwszego dopasowania
+								if (matcher.find()) {
+									System.out.println(matcher.group("mojaGrupa"));  // Wyświetla: '123'
+								} else {
+									System.out.println("Nie znaleziono dopasowania");
+								}
+							}
+						}
+					</script></code></pre>
+					<p><a href="https://www.w3schools.com/java/java_regex.asp">Więcej przykładów</a></p>
+				</section>
+
 				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
 					<h3>Zadanie 1 i 2 👨‍💻</h3>
 					<p><a href="https://classroom.github.com/a/FVlMEpl_">Wyrażenia reguralne w Pythonie</a></p>
