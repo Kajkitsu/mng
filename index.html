@@ -47,53 +47,33 @@
 				<section>
 					<small>
 						<ol>
-							<li>Każde przedstawione zadanie podlega ocenie 2-5;</li>
+							<li>Każde przedstawione zadanie podlega punktacji. W trakcie jednego spotkania można uzyskać
+								100punktów;</li>
 							<li>W przypadku stwierdzenia niesamodzielności w wykonaniu pracy zostanie ona wliczona do
 								średniej
-								jako 0.</li>
-							<li>Ostateczna ocena z laboratoriów będzie wynikała ze średniej z wszystkich zadań
-								laboratoryjnych.
+								jako 0pkt.</li>
+							<li>Ostateczna ocena z laboratoriów będzie wynikiem liczny zebranych punktów, zgodnie z
+								skalą:
+								<ul>
+									<li>0-50 pkt -> <b>2</b></li>
+									<li>51-60 pkt -> <b>3</b></li>
+									<li>61-70 pkt -> <b>3,5</b></li>
+									<li>71-80 pkt -> <b>4</b></li>
+									<li>81-90 pkt -> <b>4,5</b></li>
+									<li>91-100 pkt -> <b>5</b></li>
+								</ul>
 							</li>
 							<li>Obecność na wszystkich zajęciach jest obowiązkowa. Zaległości można usunąć uczestnicząc
 								w
 								zajęciach z inną grupą, po wcześniejszym poinformowaniu prowadzącego. W przypadku, gdy
 								zajęcia z pozostałymi grupami już się odbyły, można odrobić zajęcia na konsultacjach.
 								Dopuszczalna liczba nieobecności: 1.</li>
-							<li>Zajęcia będą realizowane z wykorzystaniem systemu kontroli wersjii - git. Za termin
-								realizacji uznaje się godzinę ostatniego commit-u. Czas na wykonanie zadania
-								to dwa tygodnie liczone od 23:59 dnia, w którym zostały zrealizowane zajęcia. Jeżeli
-								termin
-								oddania zadania przypadnie po rozpoczęciu sesji
-								egzaminacyjnej, wtedy za termin oddania zadania przyjmuje się 24h przed rozpoczęciem
-								sesji
-								egzaminacyjnej.</li>
+							<li>Zajęcia będą realizowane z wykorzystaniem serwisu https://classroom.github.com/. Terminy
+								wykonania zadania są określone w zadaniach.</li>
 						</ol>
 					</small>
 				</section>
-				<section>
-					<small>
-						<ol start="6">
-							<li>Po otrzymaniu oceny końcowej od prowadzącego należy wrzucić swoje rozwiązanie na grupę
-								na
-								MS Teams w postaci czterech paczek zip, nazwanych zgodnie z przykładem:
-								<em>MNG_ZAD1_WASZKOWIAK_NORBERT_68604.zip</em>. Jest to warunek wpisania oceny do
-								systemu
-								USOS.
-							</li>
-							<li>
-								Ocenie podlegać będą:
-								<br />
-								<ul>
-									<li>Poprawność wykonania;</li>
-									<li>Zakres funkcjonalności rozwiązania;</li>
-									<li>Samodzielność;</li>
-									<li>Zastosowanie dobrych praktyk programistycznych;</li>
-									<li>Wykorzystanie systemu kontroli wersji.</li>
-								</ul>
-							</li>
-						</ol>
-					</small>
-				</section>
+
 			</section>
 			<section data-background-gradient="linear-gradient(45deg, #c03090, #10a080)">
 				<section>
@@ -147,79 +127,10 @@
 						WME22BX3S1 ; WME22BX4S1</small>
 				</section>
 				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
-					<h3>Zadanie 1 👨‍💻</h3>
-					<small style="text-align: left; margin: 20px">Zaimplementuj klasę umożliwiającą, na podstawie maila
-						z
-						domeny WAT, pozyskanie informacji o
-						właścicielu takich jak:
-						<br />
-						<ul>
-							<li>imię</li>
-							<li>nazwisko</li>
-							<li>czy jest studentem</li>
-							<li>czy jest mężczyzną</li>
-						</ul>
-						<br />
-						Klasa ma realizować testy jednostkowe, przedstawione w następnej sekcji. Dopisz dodatkowe 10
-						przypadków testowych.
-						Do końca trwania laboratoriów prześlij za pomocą <a
-							href="https://forms.office.com/r/cexRADC2at">formularza</a>
-						link do utworzonego <b>publicznego</b> repozytorium na github.com
-					</small>
-				</section>
-				<section data-transition="slide" data-background="#202020" data-background-transition="zoom">
-					<h3>Zadanie 1 👨‍💻</h3>
-					<pre style="font-size: 14px" data-id="code-animation">
-						<code class="hljs python" data-trim data-line-numbers="1-55|1|4-11|13-22|24-33|35-44"><script type="text/template">
-							import unittest
+					<h3>Zadanie 1 i 2 👨‍💻</h3>
+					<p><a href="https://classroom.github.com/a/FVlMEpl_">Wyrażenia reguralne w Pythonie</a></p>
+					<p><a href="https://classroom.github.com/a/yBa0RZG0">Wyrażenia reguralne w Javie</a></p>
 
-							class EmailExtractorTestCase(unittest.TestCase):
-								def setUp(self) -> None:
-									self.data = [
-									    # email, is_student, is_male, name, surname
-										["norbert.waszkowiak@wat.edu.pl", False, True, "Norbert", "Waszkowiak"],
-										["jan.kowalski@student.wat.edu.pl", True, True, "Jan", "Kowalski"],
-										["anna.nowak@student.wat.edu.pl", True, False, "Anna", "Nowak"],
-										["adrianna.abacka01@student.wat.edu.pl", True, False, "Adrianna", "Abacka"],
-										["katarzyna.babacka@wat.edu.pl", False, False, "Katarzyna", "Babacka"], ]
-							
-								def test_is_student(self):
-									for x in self.data:
-										with self.subTest():
-											# given
-											email = x[0]
-											is_student = x[1]
-											# then
-											extractor = EmailExtractor(email)
-											# expect
-											self.assertEqual(is_student, extractor.is_student())
-							
-								def test_is_male(self):
-									for x in self.data:
-										with self.subTest():
-											# given
-											email = x[0]
-											name = x[3]
-											# then
-											extractor = EmailExtractor(email)
-											# expect
-											self.assertEqual(name, extractor.get_name())
-							
-								def test_get_surname(self):
-									for x in self.data:
-										with self.subTest():
-											# given
-											email = x[0]
-											surname = x[4]
-											# then
-											extractor = EmailExtractor(email)
-											# expect
-											self.assertEqual(surname, extractor.get_surname())
-							
-							
-						</script>
-						</code>
-					</pre>
 				</section>
 			</section>
 			<section data-background-gradient="linear-gradient(20deg, #650000, #29448b)">
@@ -595,7 +506,8 @@
 						zadanie.
 					</small>
 					<small>
-						Przykładowy kod wraz z script engine <a href="https://github.com/Kajkitsu/knowledge-mngkw/tree/script_engine">na tym branachu</a>.
+						Przykładowy kod wraz z script engine <a
+							href="https://github.com/Kajkitsu/knowledge-mngkw/tree/script_engine">na tym branachu</a>.
 					</small>
 				</section>
 			</section>
